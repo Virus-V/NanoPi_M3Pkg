@@ -17,12 +17,17 @@
 
 #include <Base.h>
 
-#include <Library/IoLib.h>
 #include <Library/PcdLib.h>
-#include <Library/PL011UartLib.h>
 #include <Library/SerialPortLib.h>
+#include <Library/S5P6818Lib.h>
 
-#include <S5P6818.h>
+#include <nx_s5p68181.h>
+#include <nx_clkpwr.h>
+#include <nx_clkgen.h>
+#include <nx_rstcon.h>
+#include <nx_uart.h>
+
+#define UART_CLKGEN_FREQ 100000000  // 100MHz
 
 /** Initialise the serial device hardware with default settings.
 
@@ -41,6 +46,11 @@ SerialPortInitialize (
   EFI_PARITY_TYPE     Parity;
   UINT8               DataBits;
   EFI_STOP_BITS_TYPE  StopBits;
+  volatile struct nx_rstcon_registerset *rst = (void *)PHY_BASEADDR_RSTCON_MODULE;
+  volatile struct nx_clkgen_registerset *clk = (void *)PHY_BASEADDR_CLKGEN22_MODULE;
+  volatile struct nx_gpio_registerset *gpio = (void *)PHY_BASEADDR_GPIOD_MODULE;
+  volatile UINT32 *serial = (void *)PHY_BASEADDR_UART0_MODULE;
+  UINTN divisor;
 
   BaudRate = FixedPcdGet64 (PcdUartDefaultBaudRate);
   ReceiveFifoDepth = 0;         // Use default FIFO depth
@@ -49,20 +59,69 @@ SerialPortInitialize (
   StopBits = (EFI_STOP_BITS_TYPE) FixedPcdGet8 (PcdUartDefaultStopBits);
 
   // Reset Serial
-  S5P6818_IPRST0[50 >> 5] &= ~(1 << (50 & 0x1F)); // Clear bit
-  S5P6818_IPRST0[50 >> 5] |=  (1 << (50 & 0x1F)); // Set bit
+  rst->regrst[RESETINDEX_OF_UART0_MODULE_nUARTRST >> 5] &= ~(1 << (RESETINDEX_OF_UART0_MODULE_nUARTRST & 0x1F)); // Clear bit
+  rst->regrst[RESETINDEX_OF_UART0_MODULE_nUARTRST >> 5] |=  (1 << (RESETINDEX_OF_UART0_MODULE_nUARTRST & 0x1F)); // Set bit
 
-  // Sets Serial clock
-  
-  return PL011UartInitializePort (
-           (UINTN)FixedPcdGet64 (PcdSerialRegisterBase),
-           FixedPcdGet32 (PL011UartClkInHz),
-           &BaudRate,
-           &ReceiveFifoDepth,
-           &Parity,
-           &DataBits,
-           &StopBits
-           );
+  // Sets Serial clock source
+  clk->clkgen[0] = (clk->clkgen[0] & ~(0x7 << 2)) | (2 << 2); // Set Pll source 2
+  // Set Serial Clock frequency
+  divisor = (UINTN)(((double)S5p6818_GetPllClock(2)/UART_CLKGEN_FREQ) + 0.5);
+  clk->clkgen[0] = (clk->clkgen[0] & ~(0xFF << 5)) | ((divisor - 1) << 5);
+
+  // Set Serial params
+  serial[UARTRUCON] |= 0x3 << 8;    // Rx/Tx Interrupt Mode (Level Mode)
+  serial[UARTRUCON] = (serial[UARTRUCON] & ~0xF) | 0x5; // Set Rx/Tx use Interrupt
+
+  serial[UARTDLCON] &= ~(0x7 << 3); // Clear Parity bit fields
+  switch(Parity){   // Set Parity bits
+  case EvenParity:
+    serial[UARTDLCON] |= 5 << 3;
+    break;
+  case OddParity:
+    serial[UARTDLCON] |= 4 << 3;
+    break;
+  case NoParity:
+  default:
+    serial[UARTDLCON] |= 0 << 3;
+    break;
+  }
+  // Stop bits
+  switch(StopBits){
+  case TwoStopBit:
+    serial[UARTDLCON] |= 1 << 2;
+    break;
+  case OneStopBit:
+  default:
+    serial[UARTDLCON] &= ~(1 << 2);
+  }
+  // Data Length
+  serial[UARTDLCON] &= ~0x3;
+  switch(DataBits){
+  case 5:
+    serial[UARTDLCON] |= 0;
+    break;
+  case 6:
+    serial[UARTDLCON] |= 1;
+    break;
+  case 7:
+    serial[UARTDLCON] |= 2;
+    break;
+  case 8:
+  default:
+    serial[UARTDLCON] |= 3;
+  }
+  // Set baudrate divisor
+  divisor = (UINTN)((((double)S5p6818_GetPllClock(2) / (divisor + 1)) / BaudRate) + 0.5);
+  serial[UARTBRDR] = divisor >> 4;
+  serial[UARTFRACVAL] = divisor & 0xF;
+  // Set FIFOs
+  serial[UARTEFCON] |= 0x3 << 1;
+  while(serial[UARTEFCON] & (0x3 << 1));    // Wait reset complete
+  // Enable FIFO
+  serial[UARTEFCON] |= 0x1;
+  // Set GPIO
+
+  return EFI_SUCCESS;
 }
 
 /**

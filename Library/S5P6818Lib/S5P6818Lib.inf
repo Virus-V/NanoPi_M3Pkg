@@ -1,0 +1,21 @@
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = EfiTimeBaseLib
+  FILE_GUID                      = 5ce936c8-cbf4-11e9-9222-bb1827725587
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = EfiTimeBaseLib
+
+[Sources.common]
+  EfiTimeBaseLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  NanoPi_M3Pkg/NanoPi_M3Pkg.dec
+
+[LibraryClasses]
+  DebugLib
+  PcdLib
+
+[FixedPcd]
+ gNanoPiM3PkgTokenSpaceGuid.PcdOSCFrequency

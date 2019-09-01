@@ -1,19 +1,7 @@
-#
-#  Copyright (c) 2014-2017, Linaro Limited. All rights reserved.
-#
-#  This program and the accompanying materials
-#  are licensed and made available under the terms and conditions of the BSD License
-#  which accompanies this distribution.  The full text of the license may be found at
-#  http://opensource.org/licenses/bsd-license.php
-#
-#  THE PROGRAM IS DISTRIBUTED UNDER THE BSD LICENSE ON AN "AS IS" BASIS,
-#  WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.
-#
-
 [Defines]
   DEC_SPECIFICATION              = 0x00010019
-  PACKAGE_NAME                   = HiKey960
-  PACKAGE_GUID                   = a71a681b-3c46-4c92-9fc2-986919026362
+  PACKAGE_NAME                   = NanoPiM3
+  PACKAGE_GUID                   = a35b8426-cbf4-11e9-9df4-8f81029aeb6c
   PACKAGE_VERSION                = 0.1
 
 ################################################################################
@@ -29,11 +17,11 @@
   Include                        # Root include for the package
 
 [Guids.common]
-  gDwUsbDeviceGuid              =  { 0x72d78ea6, 0x4dee, 0x11e3, { 0x81, 0x00, 0xf3, 0x84, 0x2a, 0x48, 0xd0, 0xa0 } }
-  gHiKey960TokenSpaceGuid       =  { 0x73efcd58, 0x3320, 0x4043, { 0xa8, 0x87, 0xd1, 0xf9, 0xb4, 0x49, 0x48, 0x87 } }
-  gHiKey960VariableGuid         =  { 0x29727c8d, 0x3531, 0x7a41, { 0x81, 0x9c, 0x7e, 0x50, 0x4e, 0xdd, 0x24, 0x3f } }
+  gNanoPIM3TokenSpaceGuid       =  { 0xf950865e, 0xcc0, 0x11e9, { 0xa8, 0xf6, 0x13, 0x7d, 0x5d, 0xda, 0xf6, 0xd7 } }
 
 [PcdsFixedAtBuild.common]
-  gHiKey960TokenSpaceGuid.PcdAndroidFastbootNvmDevicePath|L""|VOID*|0x00000001
-  gHiKey960TokenSpaceGuid.PcdArmFastbootFlashLimit|L""|VOID*|0x00000002
-  gHiKey960TokenSpaceGuid.PcdXloaderDevicePath|L""|VOID*|0x00000003
+  # NanoPi M3的晶振频率
+  gNanoPIM3TokenSpaceGuid.PcdOSCFrequency|24000000|UINT64|0x00000001
+  gNanoPIM3TokenSpaceGuid.PcdAndroidFastbootNvmDevicePath|L""|VOID*|0x00000002
+  gNanoPIM3TokenSpaceGuid.PcdArmFastbootFlashLimit|L""|VOID*|0x00000003
+  gNanoPIM3TokenSpaceGuid.PcdXloaderDevicePath|L""|VOID*|0x00000004

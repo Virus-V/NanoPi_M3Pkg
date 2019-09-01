@@ -33,9 +33,6 @@ enum RSTCON {
 	RSTCON_NEGATE	= 1UL
 };
 
-void nx_setresetcon(unsigned int, int);
-int nx_getresetcon(unsigned int);
-
 #ifdef	__cplusplus
 }
 #endif
