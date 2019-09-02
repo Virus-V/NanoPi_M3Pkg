@@ -22,6 +22,3 @@
 [PcdsFixedAtBuild.common]
   # NanoPi M3的晶振频率
   gNanoPIM3TokenSpaceGuid.PcdOSCFrequency|24000000|UINT64|0x00000001
-  gNanoPIM3TokenSpaceGuid.PcdAndroidFastbootNvmDevicePath|L""|VOID*|0x00000002
-  gNanoPIM3TokenSpaceGuid.PcdArmFastbootFlashLimit|L""|VOID*|0x00000003
-  gNanoPIM3TokenSpaceGuid.PcdXloaderDevicePath|L""|VOID*|0x00000004

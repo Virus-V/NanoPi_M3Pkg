@@ -17,7 +17,7 @@
 ################################################################################
 [Defines]
   PLATFORM_NAME                  = NanoPi_M3
-  PLATFORM_GUID                  = 6494b69c-ac8f-11e9-8f41-ef9474230e5a
+  PLATFORM_GUID                  = 93ef7aa4-cd9a-11e9-b9d2-03d22c5351f5
   PLATFORM_VERSION               = 0.1
   DSC_SPECIFICATION              = 0x00010005
   OUTPUT_DIRECTORY               = Build/NanoPi_M3
@@ -39,8 +39,7 @@
   IoLib|MdePkg/Library/BaseIoLibIntrinsic/BaseIoLibIntrinsic.inf
   TimerLib|ArmPkg/Library/ArmArchTimerLib/ArmArchTimerLib.inf
 
-  PL011UartLib|ArmPlatformPkg/Library/PL011UartLib//PL011UartLib.inf
-  SerialPortLib|ArmPlatformPkg/Library/PL011SerialPortLib/PL011SerialPortLib.inf
+  SerialPortLib|NanoPi_M3Pkg/Library/SerialPortLib/SerialPortLib.inf
   ArmPlatformLib|OpenPlatformPkg/Platforms/Hisilicon/HiKey960/Library/HiKey960Lib/HiKey960Lib.inf
   
   ArmPlatformStackLib|ArmPlatformPkg/Library/ArmPlatformStackLib/ArmPlatformStackLib.inf

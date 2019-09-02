@@ -28,6 +28,7 @@
 #include <nx_uart.h>
 
 #define UART_CLKGEN_FREQ 100000000  // 100MHz
+static volatile UINT32 *serial = (void *)PHY_BASEADDR_UART0_MODULE;
 
 /** Initialise the serial device hardware with default settings.
 
@@ -49,7 +50,6 @@ SerialPortInitialize (
   volatile struct nx_rstcon_registerset *rst = (void *)PHY_BASEADDR_RSTCON_MODULE;
   volatile struct nx_clkgen_registerset *clk = (void *)PHY_BASEADDR_CLKGEN22_MODULE;
   volatile struct nx_gpio_registerset *gpio = (void *)PHY_BASEADDR_GPIOD_MODULE;
-  volatile UINT32 *serial = (void *)PHY_BASEADDR_UART0_MODULE;
   UINTN divisor;
 
   BaudRate = FixedPcdGet64 (PcdUartDefaultBaudRate);
@@ -119,8 +119,9 @@ SerialPortInitialize (
   while(serial[UARTEFCON] & (0x3 << 1));    // Wait reset complete
   // Enable FIFO
   serial[UARTEFCON] |= 0x1;
-  // Set GPIO
-
+  // Set GPIO AltFn
+  gpio->gpioxaltfn[0] = (gpio->gpioxaltfn[0] & ~(0x3 << 0x1C)) | (0x1 << 0x1C);
+  gpio->gpioxaltfn[1] = (gpio->gpioxaltfn[1] & ~(0x3 << 0x4)) | (0x1 << 0x4);
   return EFI_SUCCESS;
 }
 
@@ -141,7 +142,12 @@ SerialPortWrite (
   IN UINTN     NumberOfBytes
   )
 {
-  return PL011UartWrite ((UINTN)FixedPcdGet64 (PcdSerialRegisterBase), Buffer, NumberOfBytes);
+  UINTN i;
+  for(i = 0; i < NumberOfBytes; i++){
+    while(((serial[UARTFSTATUS] >> 16) & 0x1FF) >= 0x100);    // wait until buffer not full
+    serial[UARTTXH] = Buffer[i];
+  }
+  return i;
 }
 
 /**
@@ -162,6 +168,11 @@ SerialPortRead (
 )
 {
   return PL011UartRead ((UINTN)FixedPcdGet64 (PcdSerialRegisterBase), Buffer, NumberOfBytes);
+  UINTN i;
+  for(i = 0; i < NumberOfBytes; i++){
+    while((serial[UARTFSTATUS] & 0x1FF) == 0);  // wait until data come
+    Buffer[i] = (UINT8)serial[UARTRXH];
+  }
 }
 
 /**
@@ -177,7 +188,7 @@ SerialPortPoll (
   VOID
   )
 {
-  return PL011UartPoll ((UINTN)FixedPcdGet64 (PcdSerialRegisterBase));
+  return serial[UARTFSTATUS] & 0x1FF ? TRUE : FALSE;
 }
 /**
   Set new attributes to PL011.
@@ -221,15 +232,7 @@ SerialPortSetAttributes (
   IN OUT EFI_STOP_BITS_TYPE  *StopBits
   )
 {
-  return PL011UartInitializePort (
-           (UINTN)FixedPcdGet64 (PcdSerialRegisterBase),
-           FixedPcdGet32 (PL011UartClkInHz),
-           BaudRate,
-           ReceiveFifoDepth,
-           Parity,
-           DataBits,
-           StopBits
-           );
+  return RETURN_UNSUPPORTED;
 }
 
 /**
@@ -264,7 +267,7 @@ SerialPortSetControl (
   IN UINT32  Control
   )
 {
-  return PL011UartSetControl ((UINTN)FixedPcdGet64 (PcdSerialRegisterBase), Control);
+  return RETURN_UNSUPPORTED;
 }
 
 /**
@@ -305,5 +308,5 @@ SerialPortGetControl (
   OUT UINT32  *Control
   )
 {
-  return PL011UartGetControl ((UINTN)FixedPcdGet64 (PcdSerialRegisterBase), Control);
+  return RETURN_UNSUPPORTED;
 }

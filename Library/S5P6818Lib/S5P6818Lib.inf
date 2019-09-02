@@ -1,13 +1,13 @@
 [Defines]
   INF_VERSION                    = 0x00010005
-  BASE_NAME                      = EfiTimeBaseLib
-  FILE_GUID                      = 5ce936c8-cbf4-11e9-9222-bb1827725587
+  BASE_NAME                      = S5P6818Lib
+  FILE_GUID                      = 27577932-cd9a-11e9-8e01-03aa3e036f77
   MODULE_TYPE                    = BASE
   VERSION_STRING                 = 1.0
-  LIBRARY_CLASS                  = EfiTimeBaseLib
+  LIBRARY_CLASS                  = S5P6818Lib
 
 [Sources.common]
-  EfiTimeBaseLib.c
+  pll.c
 
 [Packages]
   MdePkg/MdePkg.dec
@@ -18,4 +18,4 @@
   PcdLib
 
 [FixedPcd]
- gNanoPiM3PkgTokenSpaceGuid.PcdOSCFrequency
+ gNanoPIM3TokenSpaceGuid.PcdOSCFrequency

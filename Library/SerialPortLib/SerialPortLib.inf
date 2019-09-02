@@ -16,29 +16,26 @@
 
 [Defines]
   INF_VERSION                    = 0x00010005
-  BASE_NAME                      = PL011SerialPortLib
-  FILE_GUID                      = 8ecefc8f-a2c4-4091-b80f-20f7aeb0567f
+  BASE_NAME                      = S5P6818SerialPortLib
+  FILE_GUID                      = 4efc8ab8-cd9a-11e9-ae2a-f76d94964193
   MODULE_TYPE                    = BASE
   VERSION_STRING                 = 1.0
   LIBRARY_CLASS                  = SerialPortLib
 
 [Sources.common]
-  PL011SerialPortLib.c
+  SerialPortLib.c
 
 [LibraryClasses]
-  PL011UartLib
+  S5P6818Lib
   PcdLib
 
 [Packages]
   EmbeddedPkg/EmbeddedPkg.dec
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
-  ArmPlatformPkg/ArmPlatformPkg.dec
 
 [FixedPcd]
-  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialRegisterBase
   gEfiMdePkgTokenSpaceGuid.PcdUartDefaultBaudRate
   gEfiMdePkgTokenSpaceGuid.PcdUartDefaultDataBits
   gEfiMdePkgTokenSpaceGuid.PcdUartDefaultParity
   gEfiMdePkgTokenSpaceGuid.PcdUartDefaultStopBits
-  gArmPlatformTokenSpaceGuid.PL011UartClkInHz
