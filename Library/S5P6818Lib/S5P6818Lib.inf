@@ -11,8 +11,8 @@
 
 [Packages]
   MdePkg/MdePkg.dec
-  NanoPi_M3Pkg/NanoPi_M3Pkg.dec
-
+  NanoPi_M3Pkg/NanoPi_M3.dec
+  
 [LibraryClasses]
   DebugLib
   PcdLib

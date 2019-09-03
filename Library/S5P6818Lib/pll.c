@@ -1,8 +1,9 @@
 #include <Uefi/UefiBaseType.h>
 #include <Library/DebugLib.h>
 
-#include <nx_s5p68181.h>
-#include <Library/S5P6818Lin.h>
+#include <nx_s5p6818.h>
+#include <nx_clkpwr.h>
+#include <Library/S5P6818Lib.h>
 
 // PLL configuration register
 struct nx_clkpwr_registerset *clkpwr = (void *)PHY_BASEADDR_CLKPWR_MODULE;
@@ -20,6 +21,5 @@ S5P6818_GetPLLClock(
     ASSERT(PLLSrc < 4);
     UINT64 OscFrequency = FixedPcdGet64(PcdOSCFrequency);
     return OscFrequency / PLL_GET_PDIV(PLLSrc) * PLL_GET_MDIV(PLLSrc) / (1 << PLL_GET_SDIV(PLLSrc));
-            
 }
 

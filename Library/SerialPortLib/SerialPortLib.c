@@ -21,7 +21,7 @@
 #include <Library/SerialPortLib.h>
 #include <Library/S5P6818Lib.h>
 
-#include <nx_s5p68181.h>
+#include <nx_s5p6818.h>
 #include <nx_clkpwr.h>
 #include <nx_clkgen.h>
 #include <nx_rstcon.h>
@@ -65,7 +65,7 @@ SerialPortInitialize (
   // Sets Serial clock source
   clk->clkgen[0] = (clk->clkgen[0] & ~(0x7 << 2)) | (2 << 2); // Set Pll source 2
   // Set Serial Clock frequency
-  divisor = (UINTN)(((double)S5p6818_GetPllClock(2)/UART_CLKGEN_FREQ) + 0.5);
+  divisor = (UINTN)(((double)S5P6818_GetPLLClock(2)/UART_CLKGEN_FREQ) + 0.5);
   clk->clkgen[0] = (clk->clkgen[0] & ~(0xFF << 5)) | ((divisor - 1) << 5);
 
   // Set Serial params
@@ -111,7 +111,7 @@ SerialPortInitialize (
     serial[UARTDLCON] |= 3;
   }
   // Set baudrate divisor
-  divisor = (UINTN)((((double)S5p6818_GetPllClock(2) / (divisor + 1)) / BaudRate) + 0.5);
+  divisor = (UINTN)((((double)S5P6818_GetPLLClock(2) / (divisor + 1)) / BaudRate) + 0.5);
   serial[UARTBRDR] = divisor >> 4;
   serial[UARTFRACVAL] = divisor & 0xF;
   // Set FIFOs

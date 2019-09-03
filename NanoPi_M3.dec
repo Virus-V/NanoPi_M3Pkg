@@ -1,6 +1,6 @@
 [Defines]
   DEC_SPECIFICATION              = 0x00010019
-  PACKAGE_NAME                   = NanoPiM3
+  PACKAGE_NAME                   = NanoPi_M3
   PACKAGE_GUID                   = a35b8426-cbf4-11e9-9df4-8f81029aeb6c
   PACKAGE_VERSION                = 0.1
 
@@ -13,8 +13,12 @@
 #  BASE SEC PEI_CORE PEIM DXE_CORE DXE_DRIVER DXE_RUNTIME_DRIVER DXE_SMM_DRIVER DXE_SAL_DRIVER UEFI_DRIVER UEFI_APPLICATION
 #
 ################################################################################
+
 [Includes.common]
   Include                        # Root include for the package
+
+[LibraryClasses]
+  S5P6818Lib|Include/Library/S5P6818Lib.h
 
 [Guids.common]
   gNanoPIM3TokenSpaceGuid       =  { 0xf950865e, 0xcc0, 0x11e9, { 0xa8, 0xf6, 0x13, 0x7d, 0x5d, 0xda, 0xf6, 0xd7 } }

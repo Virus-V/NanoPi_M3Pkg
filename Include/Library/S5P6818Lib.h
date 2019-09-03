@@ -5,9 +5,9 @@
 
 // Get PLL Clock
 UINT64
-EFIAPI 
+EFIAPI
 S5P6818_GetPLLClock(
     IN UINTN PLLSrc
-    );
+);
 
 #endif
