@@ -12,8 +12,8 @@
 
 [Defines]
   INF_VERSION                    = 0x00010005
-  BASE_NAME                      = HiKey960Lib
-  FILE_GUID                      = 977ad020-e78c-4349-bda8-a3dedfd3aa47
+  BASE_NAME                      = NanoPiLib
+  FILE_GUID                      = 81c940b2-cf2a-11e9-a632-134a13a2a962
   MODULE_TYPE                    = BASE
   VERSION_STRING                 = 1.0
   LIBRARY_CLASS                  = ArmPlatformLib
@@ -28,16 +28,14 @@
 [LibraryClasses]
   IoLib
   ArmLib
-  HobLib
-  MemoryAllocationLib
-  SerialPortLib
+  DebugLib
 
 [Sources.common]
-  HiKey960.c
-  HiKey960Mem.c
+  NanoPi.c
+  NanoPiMem.c
 
 [Sources.AARCH64]
-  AArch64/HiKey960Helper.S
+  AArch64/NanoPiHelper.S
 
 [FeaturePcd]
   gEmbeddedTokenSpaceGuid.PcdCacheEnable
@@ -50,14 +48,3 @@
   gArmTokenSpaceGuid.PcdArmPrimaryCoreMask
   gArmTokenSpaceGuid.PcdArmPrimaryCore
 
-  #
-  # PL011 Serial Debug UART
-  #
-  gArmPlatformTokenSpaceGuid.PcdSerialDbgRegisterBase
-  gArmPlatformTokenSpaceGuid.PcdSerialDbgUartBaudRate
-  gArmPlatformTokenSpaceGuid.PcdSerialDbgUartClkInHz
-
-  gEfiMdePkgTokenSpaceGuid.PcdUartDefaultBaudRate
-  gEfiMdePkgTokenSpaceGuid.PcdUartDefaultDataBits
-  gEfiMdePkgTokenSpaceGuid.PcdUartDefaultParity
-  gEfiMdePkgTokenSpaceGuid.PcdUartDefaultStopBits

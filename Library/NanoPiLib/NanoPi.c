@@ -106,16 +106,7 @@ ArmPlatformInitialize (
   IN  UINTN                     MpId
   )
 {
-  RETURN_STATUS       Status;
-  UINT64              BaudRate;
-  UINT32              ReceiveFifoDepth;
-  EFI_PARITY_TYPE     Parity;
-  UINT8               DataBits;
-  EFI_STOP_BITS_TYPE  StopBits;
-
-  Status = RETURN_SUCCESS;
-
-  return Status;
+  return RETURN_SUCCESS;
 }
 
 /**

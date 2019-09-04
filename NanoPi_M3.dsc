@@ -41,7 +41,7 @@
   
   S5P6818Lib|NanoPi_M3Pkg/Library/S5P6818Lib/S5P6818Lib.inf
   SerialPortLib|NanoPi_M3Pkg/Library/SerialPortLib/SerialPortLib.inf
-  ArmPlatformLib|OpenPlatformPkg/Platforms/Hisilicon/HiKey960/Library/HiKey960Lib/HiKey960Lib.inf
+  ArmPlatformLib|NanoPi_M3Pkg/Library/NanoPiLib/NanoPiLib.inf
   
   ArmPlatformStackLib|ArmPlatformPkg/Library/ArmPlatformStackLib/ArmPlatformStackLib.inf
   # 消除arm编译报错
