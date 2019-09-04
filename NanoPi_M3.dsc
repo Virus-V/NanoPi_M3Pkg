@@ -56,54 +56,7 @@
   PeCoffExtraActionLib|ArmPkg/Library/DebugPeCoffExtraActionLib/DebugPeCoffExtraActionLib.inf
   PerformanceLib|MdePkg/Library/BasePerformanceLibNull/BasePerformanceLibNull.inf
   PrintLib|MdePkg/Library/BasePrintLib/BasePrintLib.inf
-  # =================PrePiUniCore.inf===================
-  UefiLib|MdePkg/Library/UefiLib/UefiLib.inf
-  PeCoffGetEntryPointLib|MdePkg/Library/BasePeCoffGetEntryPointLib/BasePeCoffGetEntryPointLib.inf
-  UefiBootServicesTableLib|MdePkg/Library/UefiBootServicesTableLib/UefiBootServicesTableLib.inf
-  DxeServicesLib|MdePkg/Library/DxeServicesLib/DxeServicesLib.inf
-  PcdLib|MdePkg/Library/DxePcdLib/DxePcdLib.inf
-  PeCoffGetEntryPointLib|MdePkg/Library/BasePeCoffGetEntryPointLib/BasePeCoffGetEntryPointLib.inf
-  DevicePathLib|MdePkg/Library/UefiDevicePathLib/UefiDevicePathLib.inf
-  TimerLib|ArmPkg/Library/ArmArchTimerLib/ArmArchTimerLib.inf
   
-  CpuExceptionHandlerLib|ArmPkg/Library/ArmExceptionLib/ArmExceptionLib.inf
-  DefaultExceptionHandlerLib|ArmPkg/Library/DefaultExceptionHandlerLib/DefaultExceptionHandlerLib.inf
-  ArmDisassemblerLib|ArmPkg/Library/ArmDisassemblerLib/ArmDisassemblerLib.inf
-
-  UefiRuntimeLib|MdePkg/Library/UefiRuntimeLib/UefiRuntimeLib.inf
-  UefiRuntimeServicesTableLib|MdePkg/Library/UefiRuntimeServicesTableLib/UefiRuntimeServicesTableLib.inf
-
-  HobLib|MdePkg/Library/DxeHobLib/DxeHobLib.inf
-
-  # =================DxeCore结束===================
-  CpuLib|MdePkg/Library/BaseCpuLib/BaseCpuLib.inf
-  DxeServicesTableLib|MdePkg/Library/DxeServicesTableLib/DxeServicesTableLib.inf
-  UefiDriverEntryPoint|MdePkg/Library/UefiDriverEntryPoint/UefiDriverEntryPoint.inf
-  # ====== gEfiCpuArchProtocolGuid 结束 ======
-  CapsuleLib|MdeModulePkg/Library/DxeCapsuleLibNull/DxeCapsuleLibNull.inf
-  # ====== gEfiCapsuleArchProtocolGuid 结束 ======
-  EfiResetSystemLib|ArmPkg/Library/ArmPsciResetSystemLib/ArmPsciResetSystemLib.inf
-  ArmSmcLib|ArmPkg/Library/ArmSmcLib/ArmSmcLib.inf
-  # ====== gEfiResetArchProtocolGuid 结束 ======
-  RealTimeClockLib|ArmPlatformPkg/Library/PL031RealTimeClockLib/PL031RealTimeClockLib.inf
-  TimeBaseLib|EmbeddedPkg/Library/TimeBaseLib/TimeBaseLib.inf
-  # ====== gEfiRealTimeClockArchProtocolGuid 结束 ======
-  # ConPlatformDxe.inf
-  MemoryAllocationLib|MdePkg/Library/UefiMemoryAllocationLib/UefiMemoryAllocationLib.inf
-  # bds 相关
-  UefiBootManagerLib|MdeModulePkg/Library/UefiBootManagerLib/UefiBootManagerLib.inf
-  PlatformBootManagerLib|OpenPlatformPkg/Platforms/Hisilicon/Library/PlatformBootManagerLib/PlatformBootManagerLib.inf
-  HiiLib|MdeModulePkg/Library/UefiHiiLib/UefiHiiLib.inf
-  UefiHiiServicesLib|MdeModulePkg/Library/UefiHiiServicesLib/UefiHiiServicesLib.inf
-  SortLib|MdeModulePkg/Library/UefiSortLib/UefiSortLib.inf
-
-  # HiKey960Dxe
-  FdtLib|EmbeddedPkg/Library/FdtLib/FdtLib.inf
-
-  # ScsiBusDxe
-  UefiScsiLib|MdePkg/Library/UefiScsiLib/UefiScsiLib.inf
-
-
 [LibraryClasses.AARCH64]
   ArmLib|ArmPkg/Library/ArmLib/ArmBaseLib.inf
   ArmMmuLib|ArmPkg/Library/ArmMmuLib/ArmMmuBaseLib.inf
@@ -121,30 +74,6 @@
   PlatformPeiLib|ArmPlatformPkg/PlatformPei/PlatformPeiLib.inf
   MemoryInitPeiLib|ArmPlatformPkg/MemoryInitPei/MemoryInitPeiLib.inf
   LzmaDecompressLib|MdeModulePkg/Library/LzmaCustomDecompressLib/LzmaCustomDecompressLib.inf
-
-[LibraryClasses.common.DXE_CORE]
-  HobLib|MdePkg/Library/DxeCoreHobLib/DxeCoreHobLib.inf
-  DxeCoreEntryPoint|MdePkg/Library/DxeCoreEntryPoint/DxeCoreEntryPoint.inf
-  ExtractGuidedSectionLib|MdePkg/Library/DxeExtractGuidedSectionLib/DxeExtractGuidedSectionLib.inf
-  MemoryAllocationLib|MdeModulePkg/Library/DxeCoreMemoryAllocationLib/DxeCoreMemoryAllocationLib.inf
-  ReportStatusCodeLib|IntelFrameworkModulePkg/Library/DxeReportStatusCodeLibFramework/DxeReportStatusCodeLib.inf
-
-[LibraryClasses.common.DXE_DRIVER]
-  MemoryAllocationLib|MdePkg/Library/UefiMemoryAllocationLib/UefiMemoryAllocationLib.inf
-  NonDiscoverableDeviceRegistrationLib|MdeModulePkg/Library/NonDiscoverableDeviceRegistrationLib/NonDiscoverableDeviceRegistrationLib.inf
-  ReportStatusCodeLib|IntelFrameworkModulePkg/Library/DxeReportStatusCodeLibFramework/DxeReportStatusCodeLib.inf
-  SecurityManagementLib|MdeModulePkg/Library/DxeSecurityManagementLib/DxeSecurityManagementLib.inf
-  DtPlatformDtbLoaderLib|EmbeddedPkg/Library/DxeDtPlatformDtbLoaderLibDefault/DxeDtPlatformDtbLoaderLibDefault.inf
-
-[LibraryClasses.common.UEFI_DRIVER]
-  ReportStatusCodeLib|IntelFrameworkModulePkg/Library/DxeReportStatusCodeLibFramework/DxeReportStatusCodeLib.inf
-
-[LibraryClasses.common.DXE_RUNTIME_DRIVER]
-  MemoryAllocationLib|MdePkg/Library/UefiMemoryAllocationLib/UefiMemoryAllocationLib.inf
-  ReportStatusCodeLib|IntelFrameworkModulePkg/Library/DxeReportStatusCodeLibFramework/DxeReportStatusCodeLib.inf
-
-[LibraryClasses.common.UEFI_APPLICATION]
-  UefiApplicationEntryPoint|MdePkg/Library/UefiApplicationEntryPoint/UefiApplicationEntryPoint.inf
 
 [BuildOptions]
   #GCC:*_*_*_PLATFORM_FLAGS == -I$(WORKSPACE)/MdeModulePkg/Include -I$(WORKSPACE)/OpenPlatformPkg/Include -I$(WORKSPACE)/OpenPlatformPkg/Platforms/Hisilicon/HiKey960/Include -I$(WORKSPACE)/EmbeddedPkg/Include
@@ -164,151 +93,6 @@
   #
   ArmPlatformPkg/PrePi/PeiUniCore.inf
   
-  #
-  # DXE
-  #
-  MdeModulePkg/Core/Dxe/DxeMain.inf {
-    <LibraryClasses>
-      PcdLib|MdePkg/Library/BasePcdLibNull/BasePcdLibNull.inf
-      NULL|MdeModulePkg/Library/DxeCrc32GuidedSectionExtractLib/DxeCrc32GuidedSectionExtractLib.inf
-  }
-
-  #
-  # Architectural Protocols
-  #
-  # 安装 gEfiCpuArchProtocolGuid
-  ArmPkg/Drivers/CpuDxe/CpuDxe.inf
-  # 安装 gEfiRuntimeArchProtocolGuid
-  MdeModulePkg/Core/RuntimeDxe/RuntimeDxe.inf
-  # 安装 gEfiSecurity2ArchProtocolGuid和gEfiSecurityArchProtocolGuid
-  MdeModulePkg/Universal/SecurityStubDxe/SecurityStubDxe.inf
-  # 安装 gEfiCapsuleArchProtocolGuid
-  MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf
-  # 安装 gEfiMonotonicCounterArchProtocolGuid
-  EmbeddedPkg/EmbeddedMonotonicCounter/EmbeddedMonotonicCounter.inf
-  # 安装 gEfiResetArchProtocolGuid
-  EmbeddedPkg/ResetRuntimeDxe/ResetRuntimeDxe.inf
-  # 安装 gEfiRealTimeClockArchProtocolGuid
-  EmbeddedPkg/RealTimeClockRuntimeDxe/RealTimeClockRuntimeDxe.inf
-  # 安装 gEfiMetronomeArchProtocolGuid
-  EmbeddedPkg/MetronomeDxe/MetronomeDxe.inf
-  # 安装 gEfiWatchdogTimerArchProtocolGuid
-  MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
-  # 安装 gEfiTimerArchProtocolGuid
-  ArmPkg/Drivers/TimerDxe/TimerDxe.inf
-  # 上面要用到
-  ArmPkg/Drivers/ArmGic/ArmGicDxe.inf {
-    <LibraryClasses>
-      ArmGicLib|ArmPkg/Drivers/ArmGic/ArmGicLib.inf
-      ArmGicArchLib|ArmPkg/Library/ArmGicArchLib/ArmGicArchLib.inf
-  }
-  # 安装 gEfiVariableArchProtocolGuid
-  MdeModulePkg/Universal/Variable/EmuRuntimeDxe/EmuVariableRuntimeDxe.inf
-  # gPcdProtocolGuid/gEfiPcdProtocolGuid/gGetPcdInfoProtocolGuid/gEfiGetPcdInfoProtocolGuid
-  MdeModulePkg/Universal/PCD/Dxe/Pcd.inf {
-    <LibraryClasses>
-      PcdLib|MdePkg/Library/BasePcdLibNull/BasePcdLibNull.inf
-  }
-
-  # 
-  MdeModulePkg/Universal/HiiDatabaseDxe/HiiDatabaseDxe.inf
-
-  #
-  # Multiple Console IO support
-  #
-  MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
-  MdeModulePkg/Universal/Console/ConSplitterDxe/ConSplitterDxe.inf
-  MdeModulePkg/Universal/Console/TerminalDxe/TerminalDxe.inf
-  MdeModulePkg/Universal/SerialDxe/SerialDxe.inf
-
-  OpenPlatformPkg/Platforms/Hisilicon/HiKey960/HiKey960Dxe/HiKey960Dxe.inf
-
-  #
-  # MMC/SD
-  #
-  OpenPlatformPkg/Platforms/Hisilicon/HiKey960/HiKey960MmcDxe/HiKey960MmcDxe.inf
-  MdeModulePkg/Bus/Pci/NonDiscoverablePciDeviceDxe/NonDiscoverablePciDeviceDxe.inf
-  OpenPlatformPkg/Drivers/SdMmc/DwMmcHcDxe/DwMmcHcDxe.inf
-  MdeModulePkg/Bus/Sd/SdDxe/SdDxe.inf
-
-  
-  #MdeModulePkg/Bus/Ufs/UfsPassThruDxe/UfsPassThruDxe.inf
-  #MdeModulePkg/Bus/Scsi/ScsiBusDxe/ScsiBusDxe.inf
-  #MdeModulePkg/Bus/Scsi/ScsiDiskDxe/ScsiDiskDxe.inf
-
-  #
-  # FAT filesystem + GPT/MBR partitioning
-  #
-  MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.inf
-  MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
-  MdeModulePkg/Universal/Disk/UnicodeCollation/EnglishDxe/EnglishDxe.inf
-  FatPkg/EnhancedFatDxe/Fat.inf
-
-  #
-  # GPIO
-  #
-  OpenPlatformPkg/Platforms/Hisilicon/HiKey960/HiKey960GpioDxe/HiKey960GpioDxe.inf
-  ArmPlatformPkg/Drivers/PL061GpioDxe/PL061GpioDxe.inf
-  
-  # DTB
-  EmbeddedPkg/Drivers/DtPlatformDxe/DtPlatformDxe.inf
-
-  # BDS
-  MdeModulePkg/Universal/BdsDxe/BdsDxe.inf
-  MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
-  MdeModulePkg/Universal/SetupBrowserDxe/SetupBrowserDxe.inf
-  MdeModulePkg/Universal/DisplayEngineDxe/DisplayEngineDxe.inf {
-    <LibraryClasses>
-      CustomizedDisplayLib|MdeModulePkg/Library/CustomizedDisplayLib/CustomizedDisplayLib.inf
-  }
-  MdeModulePkg/Application/UiApp/UiApp.inf {
-    <LibraryClasses>
-      ReportStatusCodeLib|MdeModulePkg/Library/DxeReportStatusCodeLib/DxeReportStatusCodeLib.inf
-      UefiApplicationEntryPoint|MdePkg/Library/UefiApplicationEntryPoint/UefiApplicationEntryPoint.inf
-      FileExplorerLib|MdeModulePkg/Library/FileExplorerLib/FileExplorerLib.inf
-      NULL|MdeModulePkg/Library/DeviceManagerUiLib/DeviceManagerUiLib.inf
-      NULL|MdeModulePkg/Library/BootManagerUiLib/BootManagerUiLib.inf
-      NULL|MdeModulePkg/Library/BootMaintenanceManagerUiLib/BootMaintenanceManagerUiLib.inf
-  }
-
-  # not use 
-  ShellPkg/Application/Shell/Shell.inf {
-    <LibraryClasses>
-      UefiApplicationEntryPoint|MdePkg/Library/UefiApplicationEntryPoint/UefiApplicationEntryPoint.inf
-      FileHandleLib|MdePkg/Library/UefiFileHandleLib/UefiFileHandleLib.inf
-      ShellLib|ShellPkg/Library/UefiShellLib/UefiShellLib.inf
-      ReportStatusCodeLib|MdeModulePkg/Library/DxeReportStatusCodeLib/DxeReportStatusCodeLib.inf
-
-      ShellCommandLib|ShellPkg/Library/UefiShellCommandLib/UefiShellCommandLib.inf
-      NULL|ShellPkg/Library/UefiShellLevel2CommandsLib/UefiShellLevel2CommandsLib.inf
-      NULL|ShellPkg/Library/UefiShellLevel1CommandsLib/UefiShellLevel1CommandsLib.inf
-      NULL|ShellPkg/Library/UefiShellLevel3CommandsLib/UefiShellLevel3CommandsLib.inf
-      NULL|ShellPkg/Library/UefiShellDriver1CommandsLib/UefiShellDriver1CommandsLib.inf
-      NULL|ShellPkg/Library/UefiShellDebug1CommandsLib/UefiShellDebug1CommandsLib.inf
-      NULL|ShellPkg/Library/UefiShellInstall1CommandsLib/UefiShellInstall1CommandsLib.inf
-      #NULL|ShellPkg/Library/UefiShellNetwork1CommandsLib/UefiShellNetwork1CommandsLib.inf
-      #NULL|ShellPkg/Library/UefiShellTftpCommandLib/UefiShellTftpCommandLib.inf
-      HandleParsingLib|ShellPkg/Library/UefiHandleParsingLib/UefiHandleParsingLib.inf
-      PrintLib|MdePkg/Library/BasePrintLib/BasePrintLib.inf
-      BcfgCommandLib|ShellPkg/Library/UefiShellBcfgCommandLib/UefiShellBcfgCommandLib.inf
-    <PcdsFixedAtBuild>
-      gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0xFF
-      gEfiShellPkgTokenSpaceGuid.PcdShellLibAutoInitialize|FALSE
-      gEfiMdePkgTokenSpaceGuid.PcdUefiLibMaxPrintBufferSize|8000
-  }
-  
-  # Test Application
-  AppPkg/Applications/DumpGPT/DumpGPT.inf {
-    <LibraryClasses>
-      UefiApplicationEntryPoint|MdePkg/Library/UefiApplicationEntryPoint/UefiApplicationEntryPoint.inf
-  }
-
-  #Event Test
-  AppPkg/Applications/EventTest/EventTest.inf 
-
-  # HotKey Test
-  AppPkg/Applications/HotKeyTest/HotKeyTest.inf 
-
 ################################################################################
 #
 # Pcd Section - list of all EDK II PCD Entries defined by this Platform
@@ -431,51 +215,6 @@
   gArmPlatformTokenSpaceGuid.PcdClusterCount|2
 
   gArmTokenSpaceGuid.PcdVFPEnabled|1
-
-  ## The number of seconds that the firmware will wait before initiating the original default boot selection.
-  #  A value of 0 indicates that the default boot selection is to be initiated immediately on boot.
-  #  The value of 0xFFFF then firmware will wait for user input before booting.
-  # @Prompt Boot Timeout (s)
-  gEfiMdePkgTokenSpaceGuid.PcdPlatformBootTimeOut|0x3
-
-  # GUID of the UI app
-  gEfiMdeModulePkgTokenSpaceGuid.PcdBootManagerMenuFile|{ 0x21, 0xaa, 0x2c, 0x46, 0x14, 0x76, 0x03, 0x45, 0x83, 0x6e, 0x8a, 0xb6, 0xf4, 0x66, 0x23, 0x31 }
-
-  gEfiMdeModulePkgTokenSpaceGuid.PcdResetOnMemoryTypeInformationChange|FALSE
-
-  #
-  # Android Loader
-  #
-  #gOpenPlatformTokenSpaceGuid.PcdAndroidBootDevicePath|L"VenHw(0D51905B-B77E-452A-A2C0-ECA0CC8D514A,00003BFF0000000000)/UFS(0x0,0x3)/HD(7,GPT,D3340696-9B95-4C64-8DF6-E6D4548FBA41,0x12100,0x4000)"
-
-  # GUID of the UEFI Shell
-  #gEfiIntelFrameworkModulePkgTokenSpaceGuid.PcdShellFile|{ 0x83, 0xA5, 0x04, 0x7C, 0x3E, 0x9E, 0x1C, 0x4F, 0xAD, 0x65, 0xE0, 0x52, 0x68, 0xD0, 0xB4, 0xD1 }
-
-  #
-  # Boot from SD Device path
-  #
-  #gOpenPlatformTokenSpaceGuid.PcdSdBootDevicePath|L"VenHw(0D51905B-B77E-452A-A2C0-ECA0CC8D514A,00F037FF0000000000)/SD(0x0)"
-
-  #
-  # Ufs
-  #
-  gDwUfsHcDxeTokenSpaceGuid.PcdDwUfsHcDxeBaseAddress|0xFF3B0000
-
-  ## PL011 - Serial Terminal
-  DEFINE SERIAL_BASE = 0xFFF32000
-  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialRegisterBase|$(SERIAL_BASE)
-  gEfiMdePkgTokenSpaceGuid.PcdUartDefaultBaudRate|115200
-  gEfiMdePkgTokenSpaceGuid.PcdUartDefaultReceiveFifoDepth|0
-  gArmPlatformTokenSpaceGuid.PL011UartInteger|10
-  gArmPlatformTokenSpaceGuid.PL011UartFractional|26
-
-  ## PL011 - Serial Debug UART
-  gArmPlatformTokenSpaceGuid.PcdSerialDbgRegisterBase|$(SERIAL_BASE)
-  gArmPlatformTokenSpaceGuid.PcdSerialDbgUartClkInHz|19200000
-  gArmPlatformTokenSpaceGuid.PcdSerialDbgUartBaudRate|115200
-
-  ## PL031 RealTimeClock
-  gArmPlatformTokenSpaceGuid.PcdPL031RtcBase|0xFFF05000
 
   #
   # ARM General Interrupt Controller

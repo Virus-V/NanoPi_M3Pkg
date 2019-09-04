@@ -26,6 +26,7 @@
 #include <nx_clkgen.h>
 #include <nx_rstcon.h>
 #include <nx_uart.h>
+#include <nx_gpio.h>
 
 #define UART_CLKGEN_FREQ 100000000  // 100MHz
 static volatile UINT32 *serial = (void *)PHY_BASEADDR_UART0_MODULE;
@@ -87,7 +88,7 @@ SerialPortInitialize (
   }
   // Stop bits
   switch(StopBits){
-  case TwoStopBit:
+  case TwoStopBits:
     serial[UARTDLCON] |= 1 << 2;
     break;
   case OneStopBit:
@@ -167,12 +168,12 @@ SerialPortRead (
   IN  UINTN     NumberOfBytes
 )
 {
-  return PL011UartRead ((UINTN)FixedPcdGet64 (PcdSerialRegisterBase), Buffer, NumberOfBytes);
   UINTN i;
   for(i = 0; i < NumberOfBytes; i++){
     while((serial[UARTFSTATUS] & 0x1FF) == 0);  // wait until data come
     Buffer[i] = (UINT8)serial[UARTRXH];
   }
+  return i;
 }
 
 /**

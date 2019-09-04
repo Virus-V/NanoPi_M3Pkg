@@ -12,8 +12,6 @@
 *
 **/
 
-#include <Library/PL011UartLib.h>
-
 #include <Library/IoLib.h>
 #include <Library/ArmPlatformLib.h>
 #include <Library/DebugLib.h>
@@ -21,7 +19,7 @@
 
 #include <Ppi/ArmMpCoreInfo.h>
 
-ARM_CORE_INFO mHiKey960InfoTable[] = {
+ARM_CORE_INFO mS5P6818InfoTable[] = {
   {
     // Cluster 0, Core 0
     0x0, 0x0,
@@ -117,27 +115,6 @@ ArmPlatformInitialize (
 
   Status = RETURN_SUCCESS;
 
-  //
-  // Initialize the Serial Debug UART
-  //
-  if (FixedPcdGet64 (PcdSerialDbgRegisterBase)) {
-    ReceiveFifoDepth = 0; // Use the default value for FIFO depth
-    Parity = (EFI_PARITY_TYPE)FixedPcdGet8 (PcdUartDefaultParity);
-    DataBits = FixedPcdGet8 (PcdUartDefaultDataBits);
-    StopBits = (EFI_STOP_BITS_TYPE)FixedPcdGet8 (PcdUartDefaultStopBits);
-
-    BaudRate = (UINTN)FixedPcdGet64 (PcdSerialDbgUartBaudRate);
-    Status = PL011UartInitializePort (
-               (UINTN)FixedPcdGet64 (PcdSerialDbgRegisterBase),
-               FixedPcdGet32 (PcdSerialDbgUartClkInHz),
-               &BaudRate,
-               &ReceiveFifoDepth,
-               &Parity,
-               &DataBits,
-               &StopBits
-               );
-  }
-
   return Status;
 }
 
@@ -161,8 +138,8 @@ PrePeiCoreGetMpCoreInfo (
   )
 {
   // Only support one cluster
-  *CoreCount    = sizeof(mHiKey960InfoTable) / sizeof(ARM_CORE_INFO);
-  *ArmCoreTable = mHiKey960InfoTable;
+  *CoreCount    = sizeof(mS5P6818InfoTable) / sizeof(ARM_CORE_INFO);
+  *ArmCoreTable = mS5P6818InfoTable;
   return EFI_SUCCESS;
 }
 
